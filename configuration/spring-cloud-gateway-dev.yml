@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: spring-cloud-gateway
+  config:
+    import: optional:configserver:http://localhost:9999
 
   cloud:
     gateway:
@@ -77,7 +79,6 @@ springdoc:
     url: /swagger-ui.html
   api-docs:
     path: /v3/api-docs
-
 
 
 
