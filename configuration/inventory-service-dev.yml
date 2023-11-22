@@ -20,6 +20,8 @@ resilience4j:
 spring:
   application:
     name: inventory-service
+  config:
+    import: optional:configserver:http://localhost:9999
   datasource:
     url: jdbc:mysql://localhost:3306/inventory-service
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -75,4 +77,3 @@ springdoc:
     path: /inventory-service/v3/api-docs
   swagger-ui:
     enabled: false
-
