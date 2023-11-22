@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: product-service
+  config:
+    import: optional:configserver:http://localhost:9999
   datasource:
     username: root
     password: root
@@ -64,7 +66,6 @@ resilience4j:
     instances:
       myCircuitBreaker: # this name is used in the annotation
         baseConfig: customCircuitBreakerConfig
-
 
 
 
