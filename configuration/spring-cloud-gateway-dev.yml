@@ -25,7 +25,7 @@ spring:
           filters:
             - name: CircuitBreaker
               args:
-                name: product-service-circuit-breaker
+                name: inventory-service-circuit-breaker
                 fallbackUri: forward:/fallback-method
 
         - id: notification-service
@@ -35,7 +35,7 @@ spring:
           filters:
             - name: CircuitBreaker
               args:
-                name: product-service-circuit-breaker
+                name: notification-service-circuit-breaker
                 fallbackUri: forward:/fallback-method
 
         - id: order-service
@@ -46,7 +46,7 @@ spring:
             - name: TokenRelay
             - name: CircuitBreaker
               args:
-                name: product-service-circuit-breaker
+                name: order-service-circuit-breaker
                 fallbackUri: forward:/fallback-method
   # we must add the TokenRelay filter to any route that requires the access token to be propagated:
   security:
