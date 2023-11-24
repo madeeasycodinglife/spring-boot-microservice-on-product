@@ -12,16 +12,31 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/product-service/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: product-service-circuit-breaker
+                fallbackUri: forward:/fallback-method
 
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
             - Path=/inventory-service/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: product-service-circuit-breaker
+                fallbackUri: forward:/fallback-method
 
         - id: notification-service
           uri: lb://notification-service
           predicates:
             - Path=/notification-service/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: product-service-circuit-breaker
+                fallbackUri: forward:/fallback-method
 
         - id: order-service
           uri: lb://order-service
@@ -29,6 +44,10 @@ spring:
             - Path=/order-service/**
           filters:
             - name: TokenRelay
+            - name: CircuitBreaker
+              args:
+                name: product-service-circuit-breaker
+                fallbackUri: forward:/fallback-method
   # we must add the TokenRelay filter to any route that requires the access token to be propagated:
   security:
     oauth2:
